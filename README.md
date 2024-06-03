@@ -170,4 +170,6 @@ IoT 개발자과정 ASP.NET 리포지토리
                 - 12를 넘어서면 디자인이 깨짐
             - container 및에 마치 table처럼 div를 구분해서 사용
             - container > row > col div 태그 클래스 정의
-            
+        - 부트스트랩 학습에 시간을 들이는 게 아님. Copyleft가 정석!
+            - https://getbootstrap.com/doc/5.3/getting-started/introduction/참조
+            - htpps://getbootstrap.com/doc/5.3/examples/스니펫
