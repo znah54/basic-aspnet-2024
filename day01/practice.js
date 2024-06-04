@@ -1,1 +1,1 @@
-alret("from is file!!!!");
+alert("from js file!!!!");
