@@ -193,11 +193,17 @@ IoT 개발자과정 ASP.NET 리포지토리
         - Codehal 유튜버 로그인 웹피이지 튜토리얼 따라하기
 
 
-
         <img src="https://raw.githubusercontent.com/znah54/basic-aspnet-2024/main/images/an0001.png" width="730" alt="Codehal 로그인창 따라하기">
 
 
-    
+## 6일차
+
+- HTML + CSS + js(jQuery) 응용
+    - 웹페이지 클로닝
+        - Codehal 슬라이더 애니메이션 웹피이지 튜토리얼 따라하기 (완료)
+
+    - 개인 웹페이지 클로닝
+        - 
 
 
 
