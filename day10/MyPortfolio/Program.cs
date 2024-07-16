@@ -1,7 +1,7 @@
-using basicDbHandling.Data;
 using Microsoft.EntityFrameworkCore;
+using MyPortfolio.Data;
 
-namespace basicDbHandling
+namespace MyPortfolio
 {
     public class Program
     {
@@ -11,10 +11,9 @@ namespace basicDbHandling
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            // DbContext 추가(종속성 주입)
-            // ApplicationDbContext.cs 내용, appsettings.json 정보가 모두 여기에 모여야 함
-            builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(
-                    builder.Configuration.GetConnectionString("DefaultConnection")
+            // DbContext 종속성 주입
+            builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(
+                builder.Configuration.GetConnectionString("Myconnection")
                 ));
 
             var app = builder.Build();
@@ -37,6 +36,7 @@ namespace basicDbHandling
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+                //URL : https://localhost:port/controller이름/action이름/[id](옵션)
 
             app.Run();
         }
