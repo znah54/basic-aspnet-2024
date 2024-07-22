@@ -13,7 +13,7 @@ namespace MyPortfolio
             builder.Services.AddControllersWithViews();
             // DbContext 종속성 주입
             builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(
-                builder.Configuration.GetConnectionString("Myconnection")
+                builder.Configuration.GetConnectionString("MyConnection")
                 ));
 
             var app = builder.Build();
@@ -36,7 +36,7 @@ namespace MyPortfolio
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-                //URL : https://localhost:port/controller이름/action이름/[id](옵션)
+                // URL패턴 : https://localhost:port/controller이름/action이름/[id](옵션)
 
             app.Run();
         }
