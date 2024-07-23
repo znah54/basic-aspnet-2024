@@ -410,6 +410,15 @@ IoT 개발자과정 ASP.NET 리포지토리
     4. 검색
         - FromSqlRaw() 메서드 변경
         - html 링크에 ?page=1&search=검색어 추가
+      
+
+
+
+    https://github.com/user-attachments/assets/2c83da6c-4ebf-4e87-8298-8475b0025e9a
+
+
+
+
     5. HTML 에디터
         - Markdown 에디터
         - simplemde(https://simplemde.com)
