@@ -1,4 +1,5 @@
-﻿@model MyPortfolio.Models.Board
+﻿@using Westwind.AspNetCore.Markdown
+@model MyPortfolio.Models.Board
 
 @{
     ViewData["Title"] = "Board";
@@ -31,7 +32,8 @@
             </div>
             <div class="row p-2">
                 <div class="col" style="min-height:200px">
-                    @Html.DisplayFor(model => model.Contents)
+                    @* @Html.DisplayFor(model => model.Contents) *@
+                    @Markdown.ParseHtmlString(Model.Contents)
                 </div>
             </div>
         </div>
