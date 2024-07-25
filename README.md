@@ -452,7 +452,7 @@ IoT 개발자과정 ASP.NET 리포지토리
         10. sign-in 폴더 내 index.html. sign-in.css Static경로(wwwroot) 복사
         11. Login.cshtml을 우ㅣ의 파일 참조해서 수정
         12. HomeController.cs 에 Register() 액션메서드 작성
-        9. Register.cshtml 회원가입 페이지
+        13. Register.cshtml 회원가입 페이지 생성
 
     3. 관리자모드/페이지
     4. 자신 컴퓨터 IIS 서버에 웹사이트 올리기
