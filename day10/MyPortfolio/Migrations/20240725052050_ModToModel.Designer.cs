@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyPortfolio.Data;
 
@@ -11,9 +12,11 @@ using MyPortfolio.Data;
 namespace MyPortfolio.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240725052050_ModToModel")]
+    partial class ModToModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,33 +64,6 @@ namespace MyPortfolio.Migrations
                     b.ToTable("Board");
                 });
 
-            modelBuilder.Entity("MyPortfolio.Models.Project", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
-
-                    b.Property<string>("FilePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProjectName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Project");
-                });
-
             modelBuilder.Entity("MyPortfolio.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -97,6 +73,7 @@ namespace MyPortfolio.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
@@ -105,9 +82,11 @@ namespace MyPortfolio.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordCheck")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNum")
+                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
@@ -119,6 +98,9 @@ namespace MyPortfolio.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -126,13 +108,15 @@ namespace MyPortfolio.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("User");
                 });
 
             modelBuilder.Entity("MyPortfolio.Models.Board", b =>
                 {
                     b.HasOne("MyPortfolio.Models.User", "User")
-                        .WithMany("Boards")
+                        .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
@@ -140,7 +124,14 @@ namespace MyPortfolio.Migrations
 
             modelBuilder.Entity("MyPortfolio.Models.User", b =>
                 {
-                    b.Navigation("Boards");
+                    b.HasOne("MyPortfolio.Models.User", null)
+                        .WithMany("Users")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("MyPortfolio.Models.User", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

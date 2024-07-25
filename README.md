@@ -376,72 +376,67 @@ IoT 개발자과정 ASP.NET 리포지토리
 
 ## 11일차(07.23)
 - ASP.NET Core 포트폴리오 웹사이트, MyPortfolio
-    0. EntityFramework로 SQL 사용없이 DB 핸들링
+    1. EntityFramework로 SQL 사용없이 DB 핸들링
         - DbContext.Add(삽입), Update(수정), Remove(삭제) 기능 존재
         - 위의 명령을 실행 후 DbContext.SaveChangesAsync() 실행해서 실제 DB에 반영
-        - ToListAsync(), FirstOrDefaultAsync()는 SELECT로 트랜잭션이 발생X 그래서 SaveChangesAsync()를 실행x
-    1. 글 조회수 올리기
-    2. 게시글 삭제
-        - _layout.cshtml의 @await RenderSectionAsync("Scripts", required: false) 이 각 페이지에 필요시 스크립트영역을 만들어써라는 의미
+        - ToListAsync(), FirstOrDefaultAsync()는 SELECT로 트랜잭션이 발생X. 그래서 SaveChangesAsync()를 실행X
+    2. 글 조회수 올리기
+    3. 게시글 삭제
+        - _layout.cshtml의  @await RenderSectionAsync("Scripts", required: false) 이 각 페이지에 필요시 스크립트영역을 만들어써라는 의미
         - AJAX 삭제는 나중에 다시!!!
-    3. 페이징!!
+    4. 페이징!!
         - 웹사이트에서 가장 중요한 기능 중 하나
         - 한 페이지에 표시할 수 있는 글의 수를 제한
         - 스크롤 페이징, 번호 페이징
         - 번호 페이징
             1. BoardController.cs Index() 액션메서드 내 FromSql()로 변경(비동기 적용 안됨, 비동기 부분 제거)
-            2. 페이지용 쿼리 작성
-            ```sql
-            SELECT *
-              FROM (
-                  SELECT ROW_NUMBER() OVER (ORDER BY Id DESC) AS rowNum
-                      , Id
-                      , Name
-                      , UserId
-                      , Title
-                      , Contents
-                      , Hit
-                      , RegDate
-                      , ModDate
-                      FROM Board
-                  ) AS base
-            WHERE base.rowNum BETWEEN 1 AND 10 -- 1과 10에 10씩 더하면 다음 페이지를 조회 쿼리
-            ```
-    4. 검색
+            2. 페이징용 쿼리 작성
+
+                ```sql
+                SELECT *
+                  FROM (
+                          SELECT ROW_NUMBER() OVER (ORDER BY Id DESC) AS rowNum
+                               , Id
+                               , Name
+                               , UserId
+                               , Title
+                               , Contents
+                               , Hit
+                               , RegDate
+                               , ModDate
+                            FROM Board
+                        ) AS base
+                  WHERE base.rowNum BETWEEN 1 AND 10 -- 1과 10에 10씩 더하면 다음 페이지를 조회 쿼리
+                ```
+            3. Index() 내 로직 수정
+            4. Views/Board/Index.cshtml 화면코드 수정
+         
+            https://github.com/user-attachments/assets/490b39de-efd8-44fe-9fb3-2a0e99a18a48
+
+    5. 검색
         - FromSqlRaw() 메서드 변경
         - html 링크에 ?page=1&search=검색어 추가
-      
 
-
-
-    https://github.com/user-attachments/assets/2c83da6c-4ebf-4e87-8298-8475b0025e9a
-
-
-
-
-    5. HTML 에디터
+    6. HTML 에디터
         - Markdown 에디터
         - simplemde(https://simplemde.com)
         - _layout.cshtml에 js, css 링크만 추가
-        - 실제 사용페이지에 특정 js만 실행
+        - 실제 사용페이지에서 특정 js만 실행
         - Create.cshtml, Edit.cshtml은 동일하게 작업
         - NuGet패키지 Westwind.AspNetCore.Markdown 검색
 
-
-        <img src="https://raw.githubusercontent.com/hugoMGSung/basic-aspnet-2024/main/images/an0006.png" width="600">
-
-
+        <img src="https://raw.githubusercontent.com/hugoMGSung/basic-aspnet-2024/main/images/an0006.png" width="700">        
 
 ## 12일차
-- ASP.NET core 포트폴리오 웹사이트, MyPortfolio
+- ASP.NET Core 포트폴리오 웹사이트, MyPortfolio
     1. 삭제로직 수정
-        1. BoardController.cs 사용X -> BoardRestController.cs 다시생성
-        2. /Views/Details.cshtml JQuery를 작업 팝업
+        1. BoardController.cs 사용X -> BoardRestController.cs 다시 생성
+        2. /Views/Details.cshtml jQuery를 작업 팝업
         3. /Board/Index로 화면 전환
-    
-    2. 회원가입, 로그인...
+
+    2. 회원가입, 로그인, 권한?....
         1. /Models/User.cs 클래스 생성
-        2. User클래스와 Board클래스간 관계형성(virtual)
+        2. User클래스와 Board클래스간 관계형성 (virtual)
         3. AppDbContext.cs에 User DBset추가
         4. Add-Migration, Update-Database 실행 -> DB 생성
         5. Program.cs에 로그인 세션 설정
@@ -450,32 +445,55 @@ IoT 개발자과정 ASP.NET 리포지토리
         8. Login() 액션메서드 마우스오른쪽 버튼 뷰생성 Login.cshtml
         9. bootstrap 사이트에서 예제 파일 다운로드
         10. sign-in 폴더 내 index.html. sign-in.css Static경로(wwwroot) 복사
-        11. Login.cshtml을 우ㅣ의 파일 참조해서 수정
+        11. Login.cshtml을 위의 파일 참조해서 수정
         12. HomeController.cs 에 Register() 액션메서드 작성
         13. Register.cshtml 회원가입 페이지 생성
 
-
-
 ## 13일차
-- ASP.NET core 포트폴리오 웹사이트, MyPortfolio
-    1. 회원가입 계속
+- ASP.NET Core 포트폴리오 웹사이트, MyPortfolio
+    1. 회원가입 계속...
         1. Register.cshtml에 asp-for등 C# Razor tag로 변경
         2. HomeController.cs Register Post 메서드 작성
         3. Login.cshtml에 C# Razor tag로 변경
         4. HomeController.cs Login Post 메서드 작성
         5. Logout Get메서드 추가
-      
-  
 
-https://github.com/user-attachments/assets/2d40de7d-c2d4-4a72-9c86-f87c8f2c5919
+        https://github.com/user-attachments/assets/984470eb-6088-4ccc-b087-4b3170ec7489
+    
+    2. 게시판 글 오류 수정
+        1. Board.cs 에 있는 Name, UserID를 삭제, User?로 변경, UserName을 virtual 추가
+        2. BoardController.cs 있는 Board 클래스와 관련된 변수도 삭제
+        3. Views/Board/*.cshtml Name, UserID를 삭제, 변경
+        4. BoardController.cs 게시글 리스트 쿼리 변경
+        5. Views/Board/*.cshtml 수정
+        6. BoardController.cs에 Create Post 메서드에 사용자데이터 추가수정
+
+    3. 프로젝트 파일업로드 
+        1. Project.cs 모델 생성
+        2. AppDbContext.cs에 DbSet<Project> 추가
+        3. Add-Migration, Update-Database
+        4. ProjectController, View 생성
+        5. Views/Project/Create.cshtml 수정
+        6. ProjectController, Create Post 메서드 수정
+
+## 13일차
+- ASP.NET Core 포트폴리오 웹사이트, MyPortfolio
+    1. AWS 라이트세일로 웹사이트 공개하기
+    2. 자신 컴퓨터 IIS 서버에 웹사이트 올리기
+    3. 프로젝트 화면 DB연동하기
+    4. Contact 메일보내기(네이버 연동)
+
+## 14일차(7.30)
+- ASP.NET Core 포트폴리오 웹사이트, MyPortfolio
+    1. 부트스트랩 템플릿 커스터마이징, 자기 포트폴리오 사이트 만들기
 
 
 
-    3. 이력서, 프로젝트, 컨텍트 페이지 DB연동하기
-    4. 관리자모드/페이지
-    5. 자신 컴퓨터 IIS 서버에 웹사이트 올리기
-    6. AWS 라이트세일로 웹사이트 공개하기
-    7. 부트스트랩 템플릿 커스터마이징, 자기 포트폴리오 사이트 만들기
+
+
+
+
+    
 
 
 

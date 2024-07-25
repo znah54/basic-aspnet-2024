@@ -12,7 +12,7 @@ namespace MyPortfolio.Helper
 
             for (int i = 0; i < data.Length; i++)
             {
-                builder.Append(data[i].ToString("x2")); // 16진수 2자리로 
+                builder.Append(data[i].ToString("x2"));  // 16진수 2자리로 
             }
 
             return builder.ToString(); // 암호문 리턴

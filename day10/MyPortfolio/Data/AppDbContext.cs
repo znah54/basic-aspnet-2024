@@ -12,6 +12,7 @@ namespace MyPortfolio.Data
 
         // CodeFirst로 테이블로 만들 엔티티 클래스 정의
         public DbSet<Board> Board { get; set; }
-        public DbSet<MyPortfolio.Models.User> User { get; set; } = default!;
+        public DbSet<User> User { get; set; }
+        public DbSet<Project> Project { get; set; }
     }
 }
