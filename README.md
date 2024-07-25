@@ -454,11 +454,22 @@ IoT 개발자과정 ASP.NET 리포지토리
         12. HomeController.cs 에 Register() 액션메서드 작성
         13. Register.cshtml 회원가입 페이지 생성
 
-    3. 관리자모드/페이지
-    4. 자신 컴퓨터 IIS 서버에 웹사이트 올리기
-    5. AWS 라이트세일로 웹사이트 공개하기
-    6. 부트스트랩 템플릿 커스터마이징, 자기 포트폴리오 사이트 만들기
-    
+
+
+## 13일차
+- ASP.NET core 포트폴리오 웹사이트, MyPortfolio
+    1. 회원가입 계속
+        1. Register.cshtml에 asp-for등 C# Razor tag로 변경
+        2. HomeController.cs Register Post 메서드 작성
+        3. Login.cshtml에 C# Razor tag로 변경
+        4. HomeController.cs Login Post 메서드 작성
+        5. Logout Get메서드 추가
+
+    3. 이력서, 프로젝트, 컨텍트 페이지 DB연동하기
+    4. 관리자모드/페이지
+    5. 자신 컴퓨터 IIS 서버에 웹사이트 올리기
+    6. AWS 라이트세일로 웹사이트 공개하기
+    7. 부트스트랩 템플릿 커스터마이징, 자기 포트폴리오 사이트 만들기
 
 
 

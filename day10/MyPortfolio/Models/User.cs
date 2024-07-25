@@ -19,6 +19,8 @@ namespace MyPortfolio.Models
 
         public string Password { get; set; }
 
+        //[Required(ErrorMessage = "비밀번호가 일치하지 않습니다.")]
+        //Nullable인데 Required는 말이 안됨
         public string PasswordCheck { get; set; }
 
         [MaxLength(15)]
@@ -31,7 +33,8 @@ namespace MyPortfolio.Models
 
         // RelationShip User부모->Board자식
         // 한사람의 사용자의 0또는 여러개의 게시글을 적을 수 있다.
-        public virtual ICollection<User> Users { get; set; }
+        // ?(Nullable)를 안쓰면 사용자는 무조건 글을 가져야 함
+        public virtual ICollection<User>? Users { get; set; }
 
 
     }
