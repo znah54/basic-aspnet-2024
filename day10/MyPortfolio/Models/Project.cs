@@ -21,5 +21,7 @@ namespace MyPortfolio.Models
         // 300X500 or 600 이미지      
         public string? FilePath { get; set; }
 
+        // 이전파일 - 나중에 Project.cs를 Add-Migration으로 수정해도 별 문제X
+
     }
 }
